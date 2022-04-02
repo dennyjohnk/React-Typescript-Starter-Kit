@@ -1,26 +1,35 @@
+import { Container, Flex } from '@chakra-ui/react';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-function App() {
+//import { AppRoutes } from './app/config/config';
+import { HomePage } from './app/pages';
+//import { SignInPage } from './app/pages/auth/SignInPage';
+//import { PrivateRoute } from './app/shared/PrivateRoute';
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Flex minH="100vh" direction={'column'} flex={1}>
+      <Container
+        maxW={'full'}
+        minH={'100vh'}
+        p={0}
+        centerContent={true}
+        borderWidth={[0, 1]}
+        borderColor={'gray.200'}
+        borderStyle={'solid'}
+      >
+        <BrowserRouter>
+          <Routes>
+            {/* <Route path={AppRoutes.AUTH} element={<AuthContainerPage />} />
+            <Route path={AppRoutes.LOGIN} element={<SignInPage />} /> */}
+            {/* HomePage Component loads the commonly required api calls and manages the children routes */}
+            <Route path="/*" element={<HomePage />} />
+          </Routes>
+        </BrowserRouter>
+      </Container>
+    </Flex>
   );
-}
+};
 
 export default App;
