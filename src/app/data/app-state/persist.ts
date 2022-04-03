@@ -19,13 +19,11 @@ init();
 
 export const getLocalAppStateValue = (): AppState => {
   const persistedValue = localStorage.getItem(LOCAL_STORAGE_APP_STATE_KEY);
-  const initialValue: Omit<AppState, 'conversionAmounts' | 'orderBookStatus'> = persistedValue
+  const initialValue: AppState = persistedValue
     ? JSON.parse(persistedValue)
     : {
         userId: '',
         token: '',
-        phone_number: '',
-        accountBenefitsShown: false,
       };
   localStorage.setItem(LOCAL_STORAGE_APP_STATE_KEY, JSON.stringify(initialValue));
 

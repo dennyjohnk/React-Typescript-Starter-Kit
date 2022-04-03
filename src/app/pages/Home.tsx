@@ -7,8 +7,8 @@ import { DashboardPage } from '../pages';
 
 const HomePageComp: React.FC = () => {
   return (
-    <Flex h="full" w="full" bg="white" direction="row-reverse" zIndex="base">
-      <Flex as="main" w="full" bg={'white'} direction="row" flex={1}>
+    <Flex h="full" w="full" direction="row-reverse" zIndex="base" gap={5}>
+      <Flex as="main" w="full" direction="row" flex={1}>
         <Routes>
           <Route index element={<DashboardPage />} />
         </Routes>

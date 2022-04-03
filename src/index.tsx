@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 // import { ReactQueryDevtools } from 'react-query/devtools';
 import { theme } from './app/config/theme';
 import { AppStateStore } from './app/data/app-state';
+import { AppErrorBoundary } from './app/shared/ErrorBoundary';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -16,19 +17,18 @@ const queryClient = new QueryClient();
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <AppStateStore>
-        <QueryClientProvider client={queryClient}>
-          {/*<ReactQueryDevtools />*/}
-          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-          <App />
-        </QueryClientProvider>
-      </AppStateStore>
+      <AppErrorBoundary>
+        <AppStateStore>
+          <QueryClientProvider client={queryClient}>
+            {/*<ReactQueryDevtools />*/}
+            <ColorModeScript />
+            <App />
+          </QueryClientProvider>
+        </AppStateStore>
+      </AppErrorBoundary>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
